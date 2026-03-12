@@ -1,0 +1,49 @@
+# Auto-CoT Baseline - Comparative Method
+run_id: comparative-0-gpt35turbo-gsm8k
+
+method:
+  name: auto_cot
+  type: comparative-0
+  description: "Auto-CoT baseline with diversity-based demo selection"
+  demo_construction:
+    pool_size: 200
+    num_clusters: 8
+    demo_per_cluster: 1
+    use_single_schema: true  # Use only decompose schema
+    schemas:
+      - decompose
+    scoring:
+      answer_consistency_weight: 0.5
+      structural_progression_weight: 0.0  # Not used in Auto-CoT
+      schema_fit_weight: 0.0  # Not used in Auto-CoT
+      brevity_weight: 0.5
+
+model:
+  name: gpt-3.5-turbo
+  api: openai
+  temperature: 0.0
+  max_tokens: 512
+  decoding: greedy
+
+dataset:
+  name: gsm8k
+  split: train
+  demo_split: train
+  test_split: test
+  max_demo_pool: 200
+  eval_subset_size: null  # null = full test set
+
+inference:
+  demo_shots: 8
+  batch_size: 1
+  max_samples: null  # null = all samples in test set
+  meta_instruction: "Let's think step by step."
+
+# Mode-specific overrides (applied by main.py)
+mode_overrides:
+  sanity:
+    inference.max_samples: 10
+    wandb.project: "2026-0312-matsuzawa-sanity"
+  pilot:
+    inference.max_samples: 100
+    wandb.project: "2026-0312-matsuzawa-pilot"
