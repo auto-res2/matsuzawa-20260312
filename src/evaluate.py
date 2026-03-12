@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import sys
 from pathlib import Path
 import wandb
 import matplotlib.pyplot as plt
@@ -12,6 +13,37 @@ import pandas as pd
 
 def parse_args():
     """Parse command line arguments."""
+    # [VALIDATOR FIX - Attempt 1]
+    # [PROBLEM]: evaluate.py was being called with Hydra-style arguments (key=value)
+    #            but expected argparse-style arguments (--key value)
+    # [CAUSE]: Workflow file passes arguments as 'results_dir="..."' and 'run_ids="..."'
+    #          but argparse expects '--results_dir' and '--run_ids'
+    # [FIX]: Transform sys.argv to convert key=value format to --key value format
+    #        before parsing with argparse
+    #
+    # [OLD CODE]:
+    # parser = argparse.ArgumentParser(
+    #     description="Evaluate and compare experimental runs"
+    # )
+    # parser.add_argument(
+    #     "--results_dir", type=str, required=True, help="Results directory path"
+    # )
+    # ... rest of argparse setup ...
+    # return parser.parse_args()
+    #
+    # [NEW CODE]:
+
+    # Transform arguments from key=value to --key value format
+    transformed_argv = []
+    for arg in sys.argv[1:]:
+        if "=" in arg and not arg.startswith("-"):
+            # Split key=value into --key and value
+            key, value = arg.split("=", 1)
+            transformed_argv.append(f"--{key}")
+            transformed_argv.append(value)
+        else:
+            transformed_argv.append(arg)
+
     parser = argparse.ArgumentParser(
         description="Evaluate and compare experimental runs"
     )
@@ -36,7 +68,7 @@ def parse_args():
         default=os.environ.get("WANDB_PROJECT", "2026-0312-matsuzawa"),
         help="WandB project name",
     )
-    return parser.parse_args()
+    return parser.parse_args(transformed_argv)
 
 
 def fetch_run_from_wandb(entity, project, run_id):
