@@ -1,0 +1,16 @@
+# Auto-CoT baseline with 4-shot demonstrations
+
+run_id: comparative-1-autocot-4shot
+
+method:
+  name: auto-cot
+  description: "Auto-CoT baseline (clustering + simple diversity)"
+  shot_budget: 4
+  use_schema_scoring: false
+  use_structure_scoring: false
+  use_brevity_scoring: false
+  use_answer_consistency: true
+  
+inference:
+  dataset: gsm8k
+  model: gemini-2.5-flash

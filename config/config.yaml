@@ -1,18 +1,42 @@
-# Main configuration for Hydra
-# This file will be populated by AI code generator based on experimental design
+# Main configuration for Schema-of-Thought Prompting experiment
 
 defaults:
   - _self_
   - run: ???  # loads from config/run/, accessible as 'run=' in CLI
 
-# Execution mode: main, sanity, or pilot
-mode: main
+# Execution mode: full, sanity, or pilot
+mode: full
 
 # Results output directory
 results_dir: .research/results
 
-# WandB configuration (will be set by AI agent)
+# WandB configuration
 wandb:
-  entity: ???
-  project: ???
+  entity: airas
+  project: 2026-0312-matsuzawa
   mode: online
+
+# Dataset configuration
+dataset:
+  name: gsm8k
+  split: main
+  cache_dir: .cache
+
+# Model configuration
+model:
+  name: gemini-2.5-flash
+  temperature: 0.0  # greedy decoding
+  max_tokens: 1024
+
+# Inference configuration
+inference:
+  n_test_samples: null  # null = use full test set
+  n_construction_pool: 200  # samples for demo construction pool
+  shot_budgets: [4, 8]  # demonstration budgets to evaluate
+  
+# Schema configuration (math-focused for GSM8K)
+schemas:
+  - decompose
+  - equation-state-update
+  - subgoal-verify
+  - quantity-tracking

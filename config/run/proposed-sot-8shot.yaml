@@ -1,0 +1,16 @@
+# SoT-Prompt (proposed method) with 8-shot demonstrations
+
+run_id: proposed-sot-8shot
+
+method:
+  name: sot-prompt
+  description: "Schema-of-Thought Prompting with multi-schema scoring"
+  shot_budget: 8
+  use_schema_scoring: true
+  use_structure_scoring: true
+  use_brevity_scoring: true
+  use_answer_consistency: true
+  
+inference:
+  dataset: gsm8k
+  model: gemini-2.5-flash

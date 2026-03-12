@@ -1,0 +1,16 @@
+# Ablation: remove structure scoring component (4-shot)
+
+run_id: ablation-4-no-structure-4shot
+
+method:
+  name: sot-no-structure
+  description: "SoT-Prompt without structure scoring"
+  shot_budget: 4
+  use_schema_scoring: true
+  use_structure_scoring: false
+  use_brevity_scoring: true
+  use_answer_consistency: true
+  
+inference:
+  dataset: gsm8k
+  model: gemini-2.5-flash

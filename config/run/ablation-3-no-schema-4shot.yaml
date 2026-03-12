@@ -1,0 +1,16 @@
+# Ablation: remove schema scoring component (4-shot)
+
+run_id: ablation-3-no-schema-4shot
+
+method:
+  name: sot-no-schema
+  description: "SoT-Prompt without schema scoring"
+  shot_budget: 4
+  use_schema_scoring: false
+  use_structure_scoring: true
+  use_brevity_scoring: true
+  use_answer_consistency: true
+  
+inference:
+  dataset: gsm8k
+  model: gemini-2.5-flash

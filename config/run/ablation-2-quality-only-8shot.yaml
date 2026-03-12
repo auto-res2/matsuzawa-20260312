@@ -1,0 +1,16 @@
+# Ablation: rationale-quality-only (no schema/structure scoring) 8-shot
+
+run_id: ablation-2-quality-only-8shot
+
+method:
+  name: rationale-quality-only
+  description: "Rationale quality scoring only (no schema adaptation)"
+  shot_budget: 8
+  use_schema_scoring: false
+  use_structure_scoring: false
+  use_brevity_scoring: true
+  use_answer_consistency: true
+  
+inference:
+  dataset: gsm8k
+  model: gemini-2.5-flash

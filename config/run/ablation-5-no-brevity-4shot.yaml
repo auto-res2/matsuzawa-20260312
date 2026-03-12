@@ -1,0 +1,16 @@
+# Ablation: remove brevity scoring component (4-shot)
+
+run_id: ablation-5-no-brevity-4shot
+
+method:
+  name: sot-no-brevity
+  description: "SoT-Prompt without brevity scoring"
+  shot_budget: 4
+  use_schema_scoring: true
+  use_structure_scoring: true
+  use_brevity_scoring: false
+  use_answer_consistency: true
+  
+inference:
+  dataset: gsm8k
+  model: gemini-2.5-flash
