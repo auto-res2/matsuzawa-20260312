@@ -20,3 +20,15 @@ dependencies = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+# [VALIDATOR FIX - Attempt 1]
+# [PROBLEM]: Build failed with "ValueError: Unable to determine which files to ship inside the wheel"
+# [CAUSE]: hatchling couldn't find a directory matching the project name (sot_prompt_experiment) and no packages were explicitly specified
+# [FIX]: Added [tool.hatch.build.targets.wheel] section to explicitly specify that the src directory should be packaged
+#
+# [OLD CODE]:
+# (no wheel configuration existed)
+#
+# [NEW CODE]:
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
