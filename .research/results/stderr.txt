@@ -1,0 +1,5 @@
+   Building sot-prompt-experiment @ file:///workspace
+      Built sot-prompt-experiment @ file:///workspace
+Uninstalled 1 package in 2ms
+Installed 1 package in 1ms
+wandb: [wandb.Api()] Loaded credentials for https://api.wandb.ai from WANDB_API_KEY.

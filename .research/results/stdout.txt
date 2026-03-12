@@ -1,0 +1,23 @@
+=== [VISUALIZATION] Start at Thu Mar 12 16:46:35 UTC 2026 ===
+Evaluating 2 runs: ['comparative-0-gpt35turbo-gsm8k', 'proposed-gpt35turbo-gsm8k']
+
+Fetching runs from WandB...
+  Fetching comparative-0-gpt35turbo-gsm8k...
+Error fetching WandB run comparative-0-gpt35turbo-gsm8k: Could not find project 2026-0312-matsuzawa
+  Skipping comparative-0-gpt35turbo-gsm8k (not found)
+  Fetching proposed-gpt35turbo-gsm8k...
+Error fetching WandB run proposed-gpt35turbo-gsm8k: Could not find project 2026-0312-matsuzawa
+  Skipping proposed-gpt35turbo-gsm8k (not found)
+No runs found. Creating placeholder visualization...
+Created placeholder visualization: .research/results/comparison/no_runs_found.pdf
+Created status file: .research/results/comparison/status.json
+
+================================================================================
+VISUALIZATION STATUS: NO RUNS FOUND
+================================================================================
+Expected 2 runs but found 0 in WandB.
+Please execute the following runs before visualization:
+  - comparative-0-gpt35turbo-gsm8k
+  - proposed-gpt35turbo-gsm8k
+================================================================================
+=== [VISUALIZATION] PASSED at Thu Mar 12 16:46:44 UTC 2026 ===
